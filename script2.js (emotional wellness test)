@@ -1,0 +1,233 @@
+const quizDB = [
+    {
+        question: "Q.1: I feel I’m living a well-balanced life (academic, relationships, personal growth, interests/hobbies)",
+        a: "Always",
+        b: "Mostly",
+        c: "Sometimes/Rarely",
+        d: "Never",
+        ans: "ans4"
+
+    },
+    {
+        
+        question: "Q.2: When I get into an argument or a fight with my friends or family members, I....",
+        a: "Try to understand why we fought, then think of a possible solution to resolve the fight",
+        b: "Share it with someone i trust because it calms me down",
+        c: "Do nothing much as things will settle down automatically",
+        d: "Become very agitated or totally numb",
+        ans: "ans4"
+    },
+    {
+
+        question: "Q.3: I would love to take a break from everything...",
+        a: "For a day",
+        b: "For a week",
+        c: "For a month",
+        d: "For a year",
+        ans: "ans4"
+    },
+    {
+
+        question: "Q.4 I feel that my talents are not recognized well enough in my college/class",
+        a: "Always",
+        b: "Mostly",
+        c: "Sometimes/Rarely",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+
+        question: "Q.5: I work on correcting my mistakes",
+        a: "Always",
+        b: "Mostly",
+        c: "Sometimes/Rarely",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.6: I can speak my mind assertively. I don’t need to be blunt",
+        a: "Always",
+        b: "Mostly",
+        c: "Sometimes/Rarely",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.7: I lose my calm with my peers or my family...",    
+        a: "At least once a day",
+        b: "At least once a fortnight",
+        c: "Once in a month or two",
+        d: "Once in a blue moon",
+        ans: "ans4"
+    },
+    {
+        question: "Q.8: I bounce back from problems and failures",
+        a: "Very fast",
+        b: "Fast enough",
+        c: "A little slowly, but I do",
+        d: "It takes a long time",
+        ans: "ans4"
+    },
+    {
+        question: "Q.9 I can find humor and laugh at myself even during tough times",
+        a: "Always",
+        b: "Mostly",
+        c: "Sometimes/Rarely",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.10: How I view myself in comparison to how others view me...",
+        a: "I view myself like others view me, I am content",
+        b: "I am slightly affected",
+        c: "I constantly feel the pressure to improve myself",
+        d: "I avoid situation where I will be judged",
+        ans: "ans4"
+
+    },
+    {
+        question: "Q.11 I am comfortable with my friends",
+        a: "Always",
+        b: "Mostly",
+        c: "Sometimes/Rarely",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.12: Making and maintaining relationships is easy for me",
+        a: "Always",
+        b: "Mostly",
+        c: "Sometimes/Rarely",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.13 I usually find myself worried about my future and career choices",
+        a: "Always",
+        b: "Mostly",
+        c: "Sometimes/Rarely",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.14 When I sit down to study, I end up spending maximum time on social media like FB, WhatsApp, Instagram, etc...",
+        a: "Always",
+        b: "Mostly",
+        c: "Sometimes/Rarely",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.15 I am confident",
+        a: "Always",
+        b: "Mostly",
+        c: "Sometimes/Rarely",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.16 I feel judged",
+        a: "Always",
+        b: "Mostly",
+        c: "Sometimes/Rarely",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.17 I feel life is not fair",
+        a: "Always",
+        b: "Mostly",
+        c: "Sometimes/Rarely",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.18 I am able to manage my schedule well",
+        a: "Always",
+        b: "Mostly",
+        c: "Sometimes/Rarely",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.19 I feel I am dealing well with my emotions",
+        a: "Always",
+        b: "Mostly",
+        c: "Sometimes/Rarely",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.20 Most of my submissions get delayed, due to one reason or the other",
+        a: "Always",
+        b: "Mostly",
+        c: "Sometimes/Rarely",
+        d: "Never",
+        ans: "ans4"
+    }
+];
+ const question = document.querySelector('.question');
+ const option1 = document.querySelector('#option1');
+ const option2 = document.querySelector('#option2');
+ const option3 = document.querySelector('#option3');
+ const option4 = document.querySelector('#option4');
+ const submit = document.querySelector('#submit');
+
+ const answers = document.querySelectorAll('.answer');
+
+ const showScore = document.querySelector('#showScore');
+
+ let questionCount = 0;
+ let score = 0;
+
+ const loadQuestion = () => {
+     const questionList = quizDB[questionCount];
+
+     question.innerText = questionList.question;
+
+     option1.innerText = questionList.a;
+     option2.innerText = questionList.b;
+     option3.innerText = questionList.c;
+     option4.innerText = questionList.d;
+     
+    
+ }
+ 
+ loadQuestion();
+ 
+ const getCheckAnswer = () => {
+     let answer;
+
+     answers.forEach((curAnsElem) => {
+         if(curAnsElem.checked){
+             answer = curAnsElem.id;
+         }
+      
+     });
+
+     return answer;
+ };
+
+ 
+ submit.addEventListener('click', () => {
+     const checkedAnswer = getCheckAnswer();
+     console.log(checkedAnswer);
+
+     if(checkedAnswer === quizDB[questionCount].ans){
+     score++;
+ };
+ questionCount++;
+
+ 
+
+    if(questionCount < quizDB.length){
+        loadQuestion();
+    }else{
+
+        showScore.innerHTML = `
+        <button class="btn" onclick= "location.reload()"> Take Emotional Wellness Test again </button>
+        `;
+        
+        showScore.classList.remove('scoreArea');
+    }
+ });
