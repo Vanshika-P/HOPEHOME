@@ -1,0 +1,193 @@
+const quizDB = [
+    {
+        question: "Q.1: When times get tough, I remember that I have people to rely on.",
+        a: "Always",
+        b: "Often",
+        c: "Sometimes",
+        d: "Never",
+        ans: "ans4"
+
+    },
+    {
+        
+        question: "Q.2: I believe I have a good chance of achieving all my life goals.",
+        a: "Always",
+        b: "Often",
+        c: "Sometimes",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+      question: "Q.3: When something bad happens, I tend to blame myself first.",
+        a: "Always",
+        b: "Often",
+        c: "Sometimes",
+        d: "Never",
+        ans: "ans4"
+    },
+
+    {
+
+        question: "Q.4 If someone compliments me, I think they don’t mean it.",
+        a: "Always",
+        b: "Tread cautiously",
+        c: "Be courteous",
+        d: "Become friends instantly",
+        ans: "ans4"
+    },
+    {
+
+        question: "Q.5: I seek the opinion and approval of others before doing anything.",
+        a: "Avoid interacting with them",
+        b: "Mostly",
+        c: "Sometimes/Rarely",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.6: I can speak my mind assertively. I don’t need to be blunt",
+        a: "Always",
+        b: "Mostly",
+        c: "Sometimes/Rarely",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.7: I lose my calm with my peers or my family...",    
+        a: "Always",
+        b: "Often",
+        c: "Sometimes",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.8: I view criticism as opportunities to get better and prove myself.",
+        a: "Always",
+        b: "Often",
+        c: "Sometimes",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.9 I don’t expect good feedback about my work or proposals.",
+        a: "Always",
+        b: "Often",
+        c: "Sometimes",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.10: If one thing goes wrong, I assume everything else will too.",
+        a: "Always",
+        b: "Often",
+        c: "Sometimes",
+        d: "Never",
+        ans: "ans4"
+
+    },
+    {
+        question: "Q.11 I think I won’t lose anything by helping people in need.",
+        a: "Always",
+        b: "Often",
+        c: "Sometimes",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.12: When I think about the future I tend to start panicking.",
+        a: "Always",
+        b: "Often",
+        c: "Sometimes",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.13 I aim for the stars thinking I may land on the moon at least.",
+        a: "Always",
+        b: "Often",
+        c: "Sometimes",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.14 I believe people have good intentions when they do something.",
+        a: "Always",
+        b: "Often",
+        c: "Sometimes",
+        d: "Never",
+        ans: "ans4"
+    },
+    {
+        question: "Q.15 When a friend says, “Can I talk to you?” I think -",
+        a: "They have a nice surprise for me.",
+        b: "They want to share something personal.",
+        c: "They have a problem with me.",
+        d: "They surely hate me.",
+        ans: "ans4"
+    }
+];
+ const question = document.querySelector('.question');
+ const option1 = document.querySelector('#option1');
+ const option2 = document.querySelector('#option2');
+ const option3 = document.querySelector('#option3');
+ const option4 = document.querySelector('#option4');
+ const submit = document.querySelector('#submit');
+
+ const answers = document.querySelectorAll('.answer');
+
+ const showScore = document.querySelector('#showScore');
+
+ let questionCount = 0;
+ let score = 0;
+
+ const loadQuestion = () => {
+     const questionList = quizDB[questionCount];
+
+     question.innerText = questionList.question;
+
+     option1.innerText = questionList.a;
+     option2.innerText = questionList.b;
+     option3.innerText = questionList.c;
+     option4.innerText = questionList.d;
+     
+    
+ }
+ 
+ loadQuestion();
+ 
+ const getCheckAnswer = () => {
+     let answer;
+
+     answers.forEach((curAnsElem) => {
+         if(curAnsElem.checked){
+             answer = curAnsElem.id;
+         }
+      
+     });
+
+     return answer;
+ };
+
+ 
+ submit.addEventListener('click', () => {
+     const checkedAnswer = getCheckAnswer();
+     console.log(checkedAnswer);
+
+     if(checkedAnswer === quizDB[questionCount].ans){
+     score++;
+ };
+ questionCount++;
+
+ 
+
+    if(questionCount < quizDB.length){
+        loadQuestion();
+    }else{
+
+        showScore.innerHTML = `
+        <button class="btn" onclick= "location.reload()"> Take Attitude Test again </button>
+        `;
+        
+        showScore.classList.remove('scoreArea');
+    }
+ });
